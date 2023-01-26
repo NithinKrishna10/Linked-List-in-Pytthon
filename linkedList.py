@@ -36,6 +36,3 @@ LL1.print_LL()
 
 # adding and insert in the beginning
 
-class Nodi:
-    def __init__(self):
-        self.data
