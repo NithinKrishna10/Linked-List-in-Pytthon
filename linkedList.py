@@ -137,6 +137,17 @@ class LinkedList:
                     current_node = current_node.ref
                 current_node.ref = new_node
 
+    def arr(self,arr):
+        for i in arr:
+            new_node = Node(i)
+            if self.head is None:
+                self.head = new_node
+            else:
+                x = self.head
+                while x is not None:
+                    x = x.ref
+                x.ref = new_node
+
 
 LL1 = LinkedList()
 LL1.add_begin(10)

@@ -31,3 +31,34 @@ b=binary_search(arr,7)
 print(lenier_serch(arr,6))
 print(b)
 
+def bina(arr,x):
+    low = 0
+    high =len(arr)-1
+    while low<high:
+        mid = (high+low)//2
+        if arr[mid] == x:
+            return mid
+        elif arr[mid]<high:
+            low = mid+1
+        else:
+            high = mid -1
+
+
+def bi(arr,s):
+    h = len(arr)-1
+    print(h)
+    l = 0
+    while l<=h:
+        m = (h+l)//2
+        # print(m)
+        if arr[m] > s:
+            h = m
+        elif arr[m] < s:
+            l = m
+        else:
+            return m
+    return -1
+
+
+
+print('jau',bi(arr,1))
