@@ -1,18 +1,17 @@
 class Node:
     def __init__(self, data):
         self.data = data
-        self.ref = None
+        self.next = None
 
 
 node1 = Node(10)
-
-# print(node1)
-
 
 class LinkedList:
     def __init__(self):
         self.head = None
 
+
+    # PRINT LINKED LIST
     def print_LL(self):
         if self.head is None:
             print('ll is empty')
@@ -20,146 +19,191 @@ class LinkedList:
             n = self.head
             print("Linked List :")
             while n is not None:
-                print(n.data,'---->',end=" ")
-                n = n.ref
-    def insert_empty(self,data):
+                print(n.data, '---->', end=" ")
+                n = n.next
+
+
+    # INSERT IN EMPTY LINKED LIST
+    def insert_empty(self, data):
         if self.head is None:
             new_node = Node(data)
             self.head = new_node
         else:
             print("It's Not Empty")
 
-    def add_begin(self,data):
+
+    
+    # ADD NODE AT THE BEGING OF LINKED LIST
+    
+    def add_begin(self, data):
         new_node = Node(data)
-        new_node.ref = self.head
+        new_node.next = self.head
         self.head = new_node
 
-    def add_end(self,data):
+
+    # ADD NODE AT THE END OF LINKED LIST
+    
+    def add_end(self, data):
         new_node = Node(data)
         if self.head is None:
             self.head = new_node
         else:
             n = self.head
-            while n.ref is not None:
-                n = n.ref
-            n.ref = new_node
-    def add_before(self,data,x):
+            while n.next is not None:
+                n = n.next
+            n.next = new_node
+            
+            
+    # ADD NODE AT THE BEGING OF LINKED LIST
+    
+    def add_before(self, data, x):
         if self.head is None:
             print("Linked List is empty")
         if self.head.data == x:
             new_node = Node(data)
-            new_node.ref = self.head
+            new_node.next = self.head
             self.head = new_node
         else:
             n = self.head
             while n is not None:
-                if n.ref.data == x:
+                if n.next.data == x:
                     break
-                n=n.ref
-            if n.ref is None:
+                n = n.next
+            if n.next is None:
                 print("Node is not found")
             else:
                 new_node = Node(data)
-                new_node.ref = n.ref
-                n.ref = new_node
+                new_node.next = n.next
+                n.next = new_node
+                
+                
+     # ADD NODE AFETER LINKED LIST
 
-    def add_after(self,data,x):
+    def add_after(self, data, x):
         n = self.head
         while n is not None:
-            if x==n.data:
+            if x == n.data:
                 break
-            n = n.ref
+            n = n.next
         if n is None:
             print("node is not present in LL")
         else:
             new_node = Node(data)
-            new_node.ref = n.ref
-            n.ref = new_node
+            new_node.next = n.next
+            n.next = new_node
 
+    #  DELETE THE FIRST NODE
+    
     def delete_begin(self):
         if self.head is None:
             print("Linked List is empty")
         else:
-            self.head = self.head.ref
+            self.head = self.head.next
+
+
+    # DELETE LAST NODE
+    
     def delete_end(self):
         if self.head is None:
             print("Linked List is empty")
         else:
             n = self.head
             while n is not None:
-                if n.ref.ref is None:
+                if n.next.next is None:
                     break
                 else:
-                    n = n.ref
-            n.ref = None
+                    n = n.next
+            n.next = None
 
-    def delete_val(self,x):
+    
+    # DELETE ANY NODE BY VALUE IN LINKED LIST
+    
+    def delete_val(self, x):
         if self.head is None:
             print("Linked List is empty")
         else:
             n = self.head
             while n is not None:
-                if n.ref.data == x:
+                if n.next.data == x:
                     break
                 else:
-                    n = n.ref
-            if n.ref is None:
+                    n = n.next
+            if n.next is None:
                 print("nothing")
             else:
-                n.ref = n.ref.ref
+                n.next = n.next.next
 
+    
+    # REVERSE THE LINKED LIST 
+    
     def reverse(self):
         prev = None
         current = self.head
         while current:
-            next_node = current.ref
-            current.ref = prev
+            next_node = current.next
+            current.next = prev
             prev = current
             current = next_node
         self.head = prev
-    
-    def remove_duplicates(self):
-        current_node = self.head
-        while current_node.ref:
-            if current_node.data == current_node.ref.data:
-                current_node.ref = current_node.ref.ref
-            else:
-                current_node = current_node.ref
 
-    def array_to_list(self,arr):
+
+    # ARRAY TO LINKED LIST
+    
+    def array_to_list(self, arr):
         for i in arr:
             new_node = Node(i)
             if self.head is None:
                 self.head = new_node
             else:
                 current_node = self.head
-                while current_node.ref:
-                    current_node = current_node.ref
-                current_node.ref = new_node
+                while current_node.next:
+                    current_node = current_node.next
+                current_node.next = new_node
+                
+                
+    # LINKED LIST TO ARRAY 
 
-    def arr(self,arr):
-        for i in arr:
-            new_node = Node(i)
-            if self.head is None:
-                self.head = new_node
+    def list_to_array(self):
+        arr = []
+        
+        n = self.head
+        while n is not None:
+            arr.append(n.data)
+            n = n.next
+                
+    # REMOVE DUPLICATES FROM LINKED LIST 
+
+    def remove_duplicatess(self):
+        current = self.head
+        prev = None
+        duplicate_values = set()
+        while current:
+            if current.data in duplicate_values:
+                prev.next = current.next
             else:
-                x = self.head
-                while x is not None:
-                    x = x.ref
-                x.ref = new_node
+                duplicate_values.add(current.data)
+                prev = current
+            current = prev.next
 
+
+    
+    
 
 LL1 = LinkedList()
 LL1.add_begin(10)
 LL1.add_begin(20)
+LL1.add_begin(20)
 LL1.add_begin(30)
 LL1.add_begin(30)
-LL1.add_after(500,20)
+LL1.add_begin(20)
+LL1.add_after(500, 20)
 LL1.add_end(700)
-LL1.add_before(400,700)
-LL1.add_after(300,700)
+LL1.add_begin(30)
+LL1.add_before(400, 700)
+LL1.add_after(300, 700)
+
 # LL1.reverse()
 LL1.print_LL()
-LL1.remove_duplicates()
+LL1.remove_duplicatess()
+# LL1.remov_dup()
 LL1.print_LL()
-
