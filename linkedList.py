@@ -4,18 +4,7 @@ class Node:
         self.next = None
 
 
-# node1 = Node(10)
-
-
-
-# def reverse_list(head, prev=None):
-#     if head is None:
-#         return prev
-#     next_node = head.next
-#     head.next = prev
-#     return reverse_list(next_node, head)
-
-
+node1 = Node(10)
 
 class LinkedList:
     def __init__(self):
@@ -28,7 +17,7 @@ class LinkedList:
             print('ll is empty')
         else:
             n = self.head
-            print("\nLinked List :")
+            print("Linked List :")
             while n is not None:
                 print(n.data, '---->', end=" ")
                 n = n.next
@@ -145,8 +134,7 @@ class LinkedList:
                 n.next = n.next.next
 
     
-    # REVERSE THE LINKED LIST 
-    
+    # REVERSE THE LINKED LIST
     def reverse(self):
         prev = None
         current = self.head
@@ -190,82 +178,42 @@ class LinkedList:
         duplicate_values = set()
         while current:
             if current.data in duplicate_values:
-                
                 prev.next = current.next
             else:
                 duplicate_values.add(current.data)
                 prev = current
             current = prev.next
-            
-    
-   
-   
-    def remove_duplicates(self):
-        current = self.head
-        while current:
-            runner = current
-            while runner.next:
-                if runner.next.data == current.data:
-                    runner.next = runner.next.next
-                 
-                else:
-      
-                    runner = runner.next
-            current = current.next
-            
-            
-    def reverseUtil(self, curr, prev):
-        # If last node mark it head
-        if curr.next is None:
-            self.head = curr
- 
-            # Update next to prev node
-            curr.next = prev
-            return
- 
-        # Save curr.next node for recursive call
-        next = curr.next
- 
-        # And update next
-        curr.next = prev
- 
-        self.reverseUtil(next, curr)
-    
-    # def reversehelper(self,node,prev):
-    #     if node is None:
-    #         self.head = prev
-    #         return 
-    #     next = node.next 
-    #     node.next = prev
-    #     prev = node
-    #     node = next
-    #     nithin = reversehelper(self,node,prev)
-    def reverse_list(self,head, prev=None):
+
+    # FIND MIDDLE OF THE LINKED LIST
+
+    def mid_list(self):
+        if self.head is None:
+            print("LinkedList is Empty")
+        slow = self.head
+        fast = self.head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+        print("jai",slow.data,"hai")
+        return slow
+
+    # def reverse_list(head):
+    #     if head is None or head.next is None:
+    #         return head
+    #     reversed_list = reverse_list(head.next)
+    #     head.next.next = head
+    #     head.next = None
+    #     return reversed_list
+
+    def reversehelper(self,head,prev):
         if head is None:
-          
-            return prev
-   
-        next_node = head.next
-        head.next = prev
-        return self.reverse_list(next_node, head)
+            head = prev
 
 
-    def reverdd(self):
-        current = self.head
-        prev = None
-        while current:
-            next_node = current.next
-            current.next = prev
-            prev = current
-            current = next_node
-        self.head = prev
-
-    def rev_helper(self):
-
-        self.head = self.reverse_list(self.head)
         
-        
-    
+
+
+
 
 LL1 = LinkedList()
 LL1.add_begin(10)
@@ -276,18 +224,17 @@ LL1.add_begin(30)
 LL1.add_begin(20)
 LL1.add_after(500, 20)
 LL1.add_end(700)
+LL1.add_end(900)
+LL1.add_end(800)
 LL1.add_begin(30)
+LL1.add_begin(340)
 LL1.add_before(400, 700)
 LL1.add_after(300, 700)
 
-# LL1.reverse()
+LL1.reverse()
 LL1.print_LL()
-# LL1.remove_duplicatess()
-
+LL1.remove_duplicatess()
+# LL1.remov_dup()
+LL1.reversehelper()
 LL1.print_LL()
-print("aaaa")
-LL1.remove_duplicates()
-LL1.reverdd()
-# LL1.rev_helper()
-
-LL1.print_LL()
+# LL1.mid_list()
